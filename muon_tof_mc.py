@@ -48,7 +48,7 @@ PVT = dict(ZA=0.54141, I=64.7e-6, rho=1.023)           # polyvinyltoluene (EJ-20
 
 N_SCINT = 1.58               # EJ-200 refractive index (Eljen datasheet)
 V_LIGHT = c / N_SCINT        # light speed in the paddle, cm/ns (upper bound: ignores reflections)
-SIGMA_JIT = 0.25             # PMT + CFD timing jitter per channel, ns (ASSUMED, see Hamamatsu handbook ch. 4)
+SIGMA_JIT = 0.25             # PMT + CFD timing jitter per channel, ns (ASSUMED; Hamamatsu handbook §4.3.1(2), Table 4-3)
 T_RUN = 30 * 60              # live time per paddle position, s (MIT guide suggests 10-45 min)
 
 # Plot styling (reference palette from the dataviz skill)
