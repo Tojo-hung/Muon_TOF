@@ -1,0 +1,15 @@
+mu+/mu- charge ratio (CAPRICE94, 0.2-120 GeV/c): 1.239
+single-paddle rate 13.04 /s; mean muon momentum 4.18 GeV/c
+    h     <L>  R(/min)  N/30min   <TOF>    sd    dE  1-S (ppm)
+   50    52.9   132.85     3985   1.782  0.92  2.79       70.2
+  100   102.1    43.73     1312   3.434  1.06  2.82      135.4
+  150   151.5    20.77      623   5.099  1.10  2.93      201.3
+  200   201.2    12.01      360   6.763  1.12  3.05      268.3
+  250   250.9     7.79      234   8.427  1.12  3.18      331.7
+  300   300.8     5.48      164  10.114  1.14  3.31      398.7
+  350   350.7     4.05      122  11.783  1.15  3.44      462.6
+TOF fit: v = 29.760 cm/ns = 0.9927 c
+lifetime from decay-in-flight fit: mu+ 2186 ns, mu- 2207 ns (input 2196.9811 ns)
+decay difference 50 vs 350 cm: 3.92e-04;  3-sigma needs 6.02e+07 counts at 350 cm = 28 years of running
+stopped muons: charge ratio 1.231; single-exp tau_eff = 2.130 +- 0.006 us
+decay rates: Gamma+ = 0.4552 /us, Gamma-(C) = 0.4935 /us, capture rate = 0.0383 /us
