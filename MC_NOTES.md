@@ -109,7 +109,42 @@ against a direct MC of t₁ + t₂ with Γ₁ = Γ₊ and Γ₂ = Γ₋.
 | Bethe formula | no density-effect correction | effect is negligible for < 4 MeV total loss |
 | flat accidental background (Fig. 4) | 30 counts/bin | illustrative |
 
-## 6. Sources
+## 6. Simple TOF simulation (`muon_tof_simple.py`)
+
+This is a stripped-down version that keeps only the muon speed (from the momentum spectrum) and the geometry
+(path length). It has no energy loss, no decay and no detector smearing, so TOF = L / (βc).
+Run it with `python3 muon_tof_simple.py`. It writes `figures/fig5_tof_simple.png` and `figures/simple_output.txt`.
+
+| h (cm) | ⟨L⟩ (cm) | ⟨TOF⟩ (ns) | spread, σ (ns) |
+|---|---|---|---|
+| 50 | 52.9 | 1.780 | 0.11 |
+| 100 | 102.1 | 3.432 | 0.10 |
+| 150 | 151.5 | 5.094 | 0.10 |
+| 200 | 201.2 | 6.764 | 0.13 |
+| 250 | 250.9 | 8.437 | 0.15 |
+| 300 | 300.8 | 10.113 | 0.18 |
+| 350 | 350.7 | 11.791 | 0.21 |
+
+The fit of ⟨TOF⟩ against ⟨L⟩ gives v = 29.741 cm/ns = 0.992c. Speed and angle are independent, so
+⟨TOF⟩ = ⟨L⟩⟨1/β⟩/c and the fit returns exactly c/⟨1/β⟩, the harmonic-mean speed of the spectrum.
+The spectra are about 0.1–0.2 ns wide here. Real data will be about 1 ns wide because of light transit and PMT jitter,
+so this version is good for the mean TOF and the speed, not for the shape of the spectra.
+
+**Sources used by the simple simulation**
+
+* **Momentum spectrum (sets the speed).** J. Kremer et al., "Measurements of Ground-Level Muons at Two Geomagnetic
+  Locations," Phys. Rev. Lett. 83, 4241 (1999), Table I, CAPRICE94 columns, μ⁺ + μ⁻, 0.2–120 GeV/c
+  (`Energy_Spectrum_Cosmic_Muons.pdf`). Measured at Lynn Lake, Manitoba (360 m altitude, near-vertical muons).
+  The spectrum is assumed to be the same at all zenith angles.
+* **Zenith-angle distribution I(θ) ∝ cos²θ (sets the path length).** B. Rossi, "Interpretation of Cosmic-Ray Phenomena,"
+  Rev. Mod. Phys. 20, 537 (1948), as used in `Sketch&Tables.ipynb`.
+* **Speed-fit method.** MIT Department of Physics, "The Speed and Decay of Cosmic-Ray Muons" (2014), §II.2,
+  eqs. 9–11 (`MIT_3rd_Muon.pdf`).
+* **Muon mass, 105.6583755 MeV.** Particle Data Group, S. Navas et al., Phys. Rev. D 110, 030001 (2024).
+* **Speed of light, 29.9792458 cm/ns.** Exact SI definition.
+* **Paddle footprint 20 × 50 cm and heights 50–350 cm.** From `Sketch&Tables.ipynb`, not a paper. Confirm the paddle size.
+
+## 7. Sources (full simulation)
 
 * **Muon mass, free lifetime τ₀ = 2.1969811 µs.** Particle Data Group, R. L. Workman et al., *Review of Particle Physics*,
   PTEP 2022, 083C01, with the 2024 update (S. Navas et al., Phys. Rev. D 110, 030001). Also quoted in the Hu 2016 paper in this repo.
@@ -124,4 +159,4 @@ against a direct MC of t₁ + t₂ with Γ₁ = Γ₊ and Γ₂ = Γ₋.
   negative muons*, Phys. Rev. C 35, 2212 (1987).
 * **Stopped-muon method, charge-ratio effect on τ, background subtraction.** `MIT_3rd_Muon.pdf` and
   `Hu2016_Simple_Setup_Muon_Lifetime_and_Michel_Spectrum_MC.pdf` (this repo).
-* **PMT timing jitter.** `Hamamatsu_PMT_Handbook_v4.pdf` (time-response chapter; transit-time spread is a few hundred ps).
+* **PMT timing jitter.** `Hamamatsu_PMT_Handbook_v4.pdf`, §4.3.1(2) and Table 4-3: linear-focused tubes have a transit-time spread of 0.37–1.1 ns FWHM for single photons, shrinking as 1/√(number of photoelectrons).
